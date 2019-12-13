@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Request;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -16,6 +18,7 @@ class Controller extends BaseController
      * 需要trait helpers来通过dingo访问控制器
      */
     use Helpers;
+    use HasApiTokens, Notifiable;
 
     public function getParamAll($field)
     {
