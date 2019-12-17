@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\http\Controllers\Controller;
+use App\Http\Requests\UsersRequest;
 use Illuminate\Http\Request;
 use JWTAuth;
 use App\Http\Controllers\Auth\RegisterController;
@@ -15,7 +16,7 @@ class UserController extends Controller
             'sex'      => null,
             'age'  => null,
         ];
-    
+
         return  ['ret'=>1,'code'=>400];
     }
 
@@ -38,9 +39,13 @@ class UserController extends Controller
 
     public function register(Request $request){
         $userData  = $request->only('name','email', 'password');
-        
+
         app(RegisterController::class)->create($userData);
     }
-    
+    public function validatorTest(UsersRequest $request)
+    {
+       return  [$request->age,$request->name,$request->sex];
+    }
+
 
 }

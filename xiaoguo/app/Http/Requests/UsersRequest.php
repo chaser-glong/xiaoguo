@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exception\HttpResponseException;
-class UsersRequest extends Requests
+class UsersRequest extends Request
 {
     /**
      * 验证出错返回
@@ -18,7 +18,7 @@ class UsersRequest extends Requests
         $error = $validator->errors()->all();
         throw new HttpResponseException(response()->json(
             [
-                'statusCode' => config('403'),
+                'statusCode' => config('100'),
                 'msg'        => implode(',', $error),
                 'success'    => false
             ], 200)
@@ -41,7 +41,11 @@ class UsersRequest extends Requests
      */
     public function rules()
     {
-        return [];
+        return [
+            'name' => 'required|string',
+            'sex'  => 'required|in:1,2',
+            'age'  => 'required|integer'
+        ];
     }
 
     /**

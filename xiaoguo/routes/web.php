@@ -22,7 +22,8 @@ $api->version('v1', function ($api) {
         $api->any('url',function(){
             return app('Dingo\Api\Routing\UrlGenerator')->version('v1')->route('age');
         });
-       
+        $api->post('users/validatorTest','UserController@validatorTest');
+
         });
 
         //该路由获得token
@@ -30,7 +31,7 @@ $api->version('v1', function ($api) {
         $api->post('user/register','UserController@register');
 
     });
-    
+
     // $api->get('test', function () {
     //     return 'It is ok';
     // });
